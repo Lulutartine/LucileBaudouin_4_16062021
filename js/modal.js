@@ -5,22 +5,45 @@ const form = document.querySelector("#subscribe"); // __ form __ //
 const modalbg = document.querySelector(".bground"); // __ bg form __ //
 const modalBtn = document.querySelectorAll(".modal-btn"); // __ subscribe btn __ //
 const formData = document.querySelectorAll(".formData"); // __ div > inputs __ //
-const cross = document.querySelectorAll('.close'); // __ modal cross __ //
+const cross = document.querySelectorAll('.close'); // __ modal > cross __ //
 
 // form elements
-const firstName = document.querySelector('#first'); //<input> prenom
-const lastName = document.querySelector('#last'); //<input> nom
+const firstName = document.querySelector('#first'); // __ input prenom __ //
+const lastName = document.querySelector('#last'); // __ input nom __ //
+const email = document.querySelector('#email'); // __ input email __ //
 
-// status 
+// setting form elements 
 let setting = {
   firstName: {
-     data: '',
-     status: false
-  },
-  lastName: {
-     data: '',
-     status: false
-  }
+    data: '',
+    status: false
+ },
+ lastName: {
+    data: '',
+    status: false
+ },
+ email: {
+    data: '',
+    status: false
+ },
+ date: {
+    data: '',
+    status: false
+ },
+ contest: {
+    data: '',
+    status: false
+ },
+ city: {
+    data: '',
+    status: false
+ },
+ cgu: {
+    status: false
+ },
+ newsletter: {
+    status: false
+ }
 }
 
 // =========================== FUNCTIONS =========================== //
@@ -61,6 +84,20 @@ const checkInputLastName = () => {
   }
 }
 lastName.addEventListener('input', checkInputLastName);
+
+// Check email function
+const checkInputEmail = () => {
+  if (email.value.match(/^([\w-\.]+)@((?:[\w]+\.)+)([a-zA-Z]{2,4})/i)) {
+     setting.email.data = email.value;
+     setting.email.status = true;
+     email.parentNode.setAttribute("data-error-visible", "false");
+  } else {
+     setting.email.data = email.value;
+     setting.email.status = false;
+     email.parentNode.setAttribute("data-error-visible", "true");
+  }
+}
+email.addEventListener('input', checkInputEmail);
 
 
 // =========================== EVENTS =========================== //

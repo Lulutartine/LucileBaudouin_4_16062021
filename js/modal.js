@@ -99,6 +99,10 @@ const checkInputEmail = () => {
 }
 email.addEventListener('input', checkInputEmail);
 
+// Check champ d'apres function
+const check? = () => {
+
+}
 
 // =========================== EVENTS =========================== //
 // launch modal event

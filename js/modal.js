@@ -49,11 +49,11 @@ let setting = {
 // =========================== FUNCTIONS =========================== //
 // Responsive function
 function editNav() {
-  var x = document.getElementById("myTopnav");
-  if (x.className === "topnav") {
-    x.className += " responsive";
+  var i = document.getElementById("myTopnav");
+  if (i.className === "topnav") {
+    i.className += " responsive";
   } else {
-    x.className = "topnav";
+    i.className = "topnav";
   }
 }
 

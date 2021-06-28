@@ -104,6 +104,8 @@ const check? = () => {
 
 }
 
+// confirmation envoi
+
 // =========================== EVENTS =========================== //
 // launch modal event
 modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));

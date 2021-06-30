@@ -58,12 +58,12 @@
         <div class="modal-body">
           <form name="reserve" action="index.html" method="get" onsubmit="return validate();">
             
-            <div class="formData" data-error="Veuillez saisir au moins 3 lettres, merci !">
+            <div class="formData" data-error="Veuillez saisir un prénom (2 lettres minimum) merci !">
               <label>Prénom</label><br>
               <input class="text-control" type="text" id="first" name="firstName" data-error="Error"/><br>
             </div>
             
-            <div class="formData" data-error="Veuillez saisir au moins 3 lettres, merci !">
+            <div class="formData" data-error="Veuillez saisir un nom (2 lettres minimum) merci !">
               <label>Nom</label><br>
               <input class="text-control" type="text" id="last" name="lastName" data-error="Error" /><br>
             </div>
@@ -73,18 +73,18 @@
               <input class="text-control" type="email" id="email" name="email" data-error="ERROR" /><br>
             </div>
             
-            <div class="formData">
+            <div class="formData" data-error="Veuillez saisir une date au format JJ/MM/AAAA">
               <label>Date de naissance</label><br>
               <input class="text-control" type="date" id="birthdate" name="birthdate" /><br>
             </div>
             
-            <div class="formData">
+            <div class="formData" data-error="Veuillez saisir un chiffre (entre 0 et 99)">
               <label>À combien de tournois GameOn avez-vous déjà participé ?</label><br>
               <input type="number" class="text-control" id="quantity" name="quantity" min="0" max="99">
             </div>
             
             <p class="text-label">Quelles villes ?</p>
-            <div class="formData">
+            <div class="formData" data-error="Veuillez selectionner une ville" data-error-visible="false" id="city">
               <input class="checkbox-input" type="radio" id="location1" name="location" value="New York" />
               <label class="checkbox-label" for="location1">
                 <span class="checkbox-icon"></span>
@@ -125,7 +125,7 @@
               </label>
               <br>
             </div>
-            <input class="btn-submit" type="submit" class="button" value="C'est parti" />
+            <input id="submit" type="submit" class="button" value="C'est parti" />
           </form>
         </div>
       </div>
@@ -135,10 +135,10 @@
           <span class="close"></span>
           <div class="thxPage">
               <p>Merci d'avoir renseigné vos informations</p>
-          </div>
+          </div> 
           <button type="button" class="button" id="closeBtn">Fermer</button>
       </div>
-  </div>
+    </div>
   </main>
   <footer>
     <p class="copyrights">

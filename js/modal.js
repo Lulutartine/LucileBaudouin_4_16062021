@@ -61,6 +61,27 @@ let setting = {
  }
 }
 
+// Birthdate
+const creatDate = () => {
+   let inputDate = date.value;
+   inputDate = inputDate.split('-')
+
+   const year = inputDate[0];
+   const month = inputDate[1];
+
+   let nbMonth;
+   if (month.includes("0") && month.startsWith("0")) {
+      nbMonth = month[1];
+   } else {
+      nbMonth = month;
+   }
+
+   const day = inputDate[2];
+   const months = ['janvier', 'fevrier', 'mars', 'avril', 'mai', 'juin', 'juillet', 'aout', 'septembre', 'octobre', 'novembre', 'decembre'];
+   const cleanDate = day + ' ' + (months[nbMonth - 1]) + ' ' + year;
+   return cleanDate;
+}
+
 // =========================== FUNCTIONS =========================== //
 // Responsive
 const editNav = () => {
@@ -117,11 +138,11 @@ email.addEventListener('input', checkInputEmail);
 // Check birthdate 
 const checkInputDate = () => {
    if (date.value == '') {
-      state.date.data = date.value;
+      setting.date.data = date.value;
       date.parentNode.setAttribute("data-error-visible", "true");
    } else {
-      state.date.data = creatDate();
-      state.date.status = true;
+      setting.date.data = creatDate();
+      setting.date.status = true;
       date.parentNode.setAttribute("data-error-visible", "false");
    }
 }
@@ -130,12 +151,12 @@ date.addEventListener('input', checkInputDate);
 // Check constest enrollment
 const checkInputContest = () => {
    if (contest.value == '' || contest.value <= 0 || contest.value > 99) {
-      state.contest.data = contest.value;
-      state.contest.status = false;
+      setting.contest.data = contest.value;
+      setting.contest.status = false;
       contest.parentNode.setAttribute("data-error-visible", "true");
    } else {
-      state.contest.data = contest.value;
-      state.contest.status = true;
+      setting.contest.data = contest.value;
+      setting.contest.status = true;
       contest.parentNode.setAttribute("data-error-visible", "false");
    }
 }
@@ -147,40 +168,40 @@ const checkInputCity = () => {
    if (radioBtn != null && radioBtn.checked) {
       switch (radioBtn.value) {
          case "New York":
-            state.city.status = true;
-            state.city.data = radioBtn.value;
+            setting.city.status = true;
+            setting.city.data = radioBtn.value;
             city.setAttribute("data-error-visible", "false");
             break;
          case "San Francisco":
-            state.city.status = true;
-            state.city.data = radioBtn.value;
+            setting.city.status = true;
+            setting.city.data = radioBtn.value;
             city.setAttribute("data-error-visible", "false");
             break;
          case "Seattle":
-            state.city.status = true;
-            state.city.data = radioBtn.value;
+            setting.city.status = true;
+            setting.city.data = radioBtn.value;
             city.setAttribute("data-error-visible", "false");
             break;
          case "Chicago":
-            state.city.status = true;
-            state.city.data = radioBtn.value;
+            setting.city.status = true;
+            setting.city.data = radioBtn.value;
             city.setAttribute("data-error-visible", "false");
             break;
          case "Boston":
-            state.city.status = true;
-            state.city.data = radioBtn.value;
+            setting.city.status = true;
+            setting.city.data = radioBtn.value;
             city.setAttribute("data-error-visible", "false");
             break;
          case "Portland":
-            state.city.status = true;
-            state.city.data = radioBtn.value;
+            setting.city.status = true;
+            setting.city.data = radioBtn.value;
             city.setAttribute("data-error-visible", "false");
             break;
          default:
             break;
       }
    } else {
-      state.city.status = false;
+      setting.city.status = false;
       city.setAttribute("data-error-visible", "true");
    }
 }
@@ -189,10 +210,10 @@ city.addEventListener('input', checkInputCity);
 // Check CGU
 const checkInputCgu = () => {
    if (checkBox.checked == true) {
-      state.cgu.status = true;
+      setting.cgu.status = true;
       checkBox.parentNode.setAttribute("data-error-visible", "false");
    } else {
-      state.cgu.status = false;
+      setting.cgu.status = false;
       checkBox.parentNode.setAttribute("data-error-visible", "true");
    }
 }
@@ -201,26 +222,28 @@ checkBox.addEventListener('input', checkInputCgu);
 // Check newsletter
 const checkNewsLetter = () => {
    if (checkBox2.checked) {
-      state.newsletter.status = true;
+      setting.newsletter.status = true;
    } else {
-      state.newsletter.status = false;
+      setting.newsletter.status = false;
    }
 }
 
 // Check form status
 const checkStatus = () => {
-   console.log(state);
+   console.log(setting);
 }
 
+// launch modal form
 const launchModal = () => {
    modalbg.style.display = "block";
 }
 
+// launch modal form
 const launchValid = () => {
    modalbg2.style.display = "block";
-   form.reset();
 }
 
+// close modal form cross btn
 const closeModal = () => {
    modalbg.style.display = "none";
    modalbg2.style.display = "none";
@@ -232,9 +255,9 @@ const closeThxPage = () => {
 
 const globalCheck = () => {
    let valid = false;
-   for (let object in state) {
+   for (let object in setting) {
       if (object !== 'newsletter') {
-         let status = state[object]['status'];
+         let status = setting[object]['status'];
          if (status == false) {
             valid = false;
             break;
@@ -262,14 +285,8 @@ cross.forEach((Span) => {
    Span.addEventListener("click", closeModal);
 })
 
-// launch modal form
-function launchModal() {
-  modalbg.style.display = "block";
-}
-// close modal form cross btn
-const closeModal = () => {
-  modalbg.style.display = "none";
-}
+// close thks page
+closeBtn.addEventListener("click", closeThxPage);
 
 // submit form event
 submitBtn.addEventListener('click', (event) => {
@@ -282,6 +299,6 @@ submitBtn.addEventListener('click', (event) => {
    checkInputCity();
    checkInputCgu();
    checkNewsLetter();
-   checkStatus(state);
+   checkStatus(setting);
    globalCheck();
 })

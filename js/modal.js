@@ -141,25 +141,147 @@ const checkInputContest = () => {
 }
 contest.addEventListener('input', checkInputContest);
 
+// Check city
+const checkInputCity = () => {
+   let radioBtn = document.querySelector('input[name=location]:checked');
+   if (radioBtn != null && radioBtn.checked) {
+      switch (radioBtn.value) {
+         case "New York":
+            state.city.status = true;
+            state.city.data = radioBtn.value;
+            city.setAttribute("data-error-visible", "false");
+            break;
+         case "San Francisco":
+            state.city.status = true;
+            state.city.data = radioBtn.value;
+            city.setAttribute("data-error-visible", "false");
+            break;
+         case "Seattle":
+            state.city.status = true;
+            state.city.data = radioBtn.value;
+            city.setAttribute("data-error-visible", "false");
+            break;
+         case "Chicago":
+            state.city.status = true;
+            state.city.data = radioBtn.value;
+            city.setAttribute("data-error-visible", "false");
+            break;
+         case "Boston":
+            state.city.status = true;
+            state.city.data = radioBtn.value;
+            city.setAttribute("data-error-visible", "false");
+            break;
+         case "Portland":
+            state.city.status = true;
+            state.city.data = radioBtn.value;
+            city.setAttribute("data-error-visible", "false");
+            break;
+         default:
+            break;
+      }
+   } else {
+      state.city.status = false;
+      city.setAttribute("data-error-visible", "true");
+   }
+}
+city.addEventListener('input', checkInputCity);
 
+// Check CGU
+const checkInputCgu = () => {
+   if (checkBox.checked == true) {
+      state.cgu.status = true;
+      checkBox.parentNode.setAttribute("data-error-visible", "false");
+   } else {
+      state.cgu.status = false;
+      checkBox.parentNode.setAttribute("data-error-visible", "true");
+   }
+}
+checkBox.addEventListener('input', checkInputCgu);
 
-// confirmation envoi
+// Check newsletter
+const checkNewsLetter = () => {
+   if (checkBox2.checked) {
+      state.newsletter.status = true;
+   } else {
+      state.newsletter.status = false;
+   }
+}
+
+// Check form status
+const checkStatus = () => {
+   console.log(state);
+}
+
+const launchModal = () => {
+   modalbg.style.display = "block";
+}
+
+const launchValid = () => {
+   modalbg2.style.display = "block";
+   form.reset();
+}
+
+const closeModal = () => {
+   modalbg.style.display = "none";
+   modalbg2.style.display = "none";
+}
+
+const closeThxPage = () => {
+   modalbg2.style.display = "none";
+}
+
+const globalCheck = () => {
+   let valid = false;
+   for (let object in state) {
+      if (object !== 'newsletter') {
+         let status = state[object]['status'];
+         if (status == false) {
+            valid = false;
+            break;
+         } else {
+            valid = true;
+         }
+      }
+   }
+
+   if (valid == true) {
+      closeModal();
+      launchValid();
+   }
+   return valid;
+}
+
 
 // =========================== EVENTS =========================== //
 // launch modal event
-modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
+modalBtn.forEach((Btn) => {
+   Btn.addEventListener('click', launchModal)
+})
+// close modal event
+cross.forEach((Span) => {
+   Span.addEventListener("click", closeModal);
+})
 
 // launch modal form
 function launchModal() {
   modalbg.style.display = "block";
 }
-
 // close modal form cross btn
 const closeModal = () => {
   modalbg.style.display = "none";
 }
 
-// close modal event
-cross.forEach((span) => {
-  span.addEventListener("click", closeModal);
+// submit form event
+submitBtn.addEventListener('click', (event) => {
+   event.preventDefault();
+   checkInputFirstName();
+   checkInputLastName();
+   checkInputEmail();
+   checkInputDate();
+   checkInputContest();
+   checkInputCity();
+   checkInputCgu();
+   checkNewsLetter();
+   checkStatus(state);
+   globalCheck();
 })

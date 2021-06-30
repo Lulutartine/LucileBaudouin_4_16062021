@@ -6,11 +6,26 @@ const modalbg = document.querySelector(".bground"); // __ bg form __ //
 const modalBtn = document.querySelectorAll(".modal-btn"); // __ subscribe btn __ //
 const formData = document.querySelectorAll(".formData"); // __ div > inputs __ //
 const cross = document.querySelectorAll('.close'); // __ modal > cross __ //
+const modalbg2 = document.querySelector(".bground2"); // __ bg thanks page __ //
+const closeBtn = document.querySelector("#closeBtn"); // __ close btn thanks page __ //
 
 // form elements
 const firstName = document.querySelector('#first'); // __ input prenom __ //
 const lastName = document.querySelector('#last'); // __ input nom __ //
 const email = document.querySelector('#email'); // __ input email __ //
+const date = document.querySelector('#birthdate'); // __ input date __ //
+const contest = document.querySelector('#quantity'); // input > field "Combien ?" __ //
+const city = document.querySelector('#city'); // __ div > locations __ //
+const checkBox = document.querySelector("#checkbox1"); // __ CGU  __ //
+const checkBox2 = document.querySelector("#checkbox2") // __ newsletter option  __ //
+const submitBtn = document.querySelector('#submit'); // __ btn "C'est parti" __ //
+
+let radio1 = document.querySelector('#location1'); // __ New York __ //
+let radio2 = document.querySelector('#location2'); // __ San Fransico __ //
+let radio3 = document.querySelector('#location3'); // __ Seattle __ //
+let radio4 = document.querySelector('#location4'); // __ Chicago __ //
+let radio5 = document.querySelector('#location5'); // __ Boston __ //
+let  radio6 = document.querySelector('#location6'); // __ Portland __ //
 
 // setting form elements 
 let setting = {
@@ -47,17 +62,17 @@ let setting = {
 }
 
 // =========================== FUNCTIONS =========================== //
-// Responsive function
-function editNav() {
-  var i = document.getElementById("myTopnav");
-  if (i.className === "topnav") {
-    i.className += " responsive";
-  } else {
-    i.className = "topnav";
-  }
+// Responsive
+const editNav = () => {
+   let i = document.getElementById("myTopnav");
+   if (i.className === "topnav") {
+      i.className += " responsive";
+   } else {
+      i.className = "topnav";
+   }
 }
 
-// Check first name function
+// Check first name
 const checkInputFirstName = () => {
   if (firstName.value.length > 2) {
      setting.firstName.data = firstName.value;
@@ -71,7 +86,7 @@ const checkInputFirstName = () => {
 }
 firstName.addEventListener('input', checkInputFirstName);
 
-// Check last name function
+// Check last name
 const checkInputLastName = () => {
   if (lastName.value.length > 2) {
      setting.lastName.data = lastName.value;
@@ -85,7 +100,7 @@ const checkInputLastName = () => {
 }
 lastName.addEventListener('input', checkInputLastName);
 
-// Check email function
+// Check email
 const checkInputEmail = () => {
   if (email.value.match(/^([\w-\.]+)@((?:[\w]+\.)+)([a-zA-Z]{2,4})/i)) {
      setting.email.data = email.value;
@@ -99,10 +114,34 @@ const checkInputEmail = () => {
 }
 email.addEventListener('input', checkInputEmail);
 
-// Check champ d'apres function
-const check? = () => {
-
+// Check birthdate 
+const checkInputDate = () => {
+   if (date.value == '') {
+      state.date.data = date.value;
+      date.parentNode.setAttribute("data-error-visible", "true");
+   } else {
+      state.date.data = creatDate();
+      state.date.status = true;
+      date.parentNode.setAttribute("data-error-visible", "false");
+   }
 }
+date.addEventListener('input', checkInputDate);
+
+// Check constest enrollment
+const checkInputContest = () => {
+   if (contest.value == '' || contest.value <= 0 || contest.value > 99) {
+      state.contest.data = contest.value;
+      state.contest.status = false;
+      contest.parentNode.setAttribute("data-error-visible", "true");
+   } else {
+      state.contest.data = contest.value;
+      state.contest.status = true;
+      contest.parentNode.setAttribute("data-error-visible", "false");
+   }
+}
+contest.addEventListener('input', checkInputContest);
+
+
 
 // confirmation envoi
 

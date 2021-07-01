@@ -95,7 +95,7 @@ const editNav = () => {
 
 // Check first name
 const checkInputFirstName = () => {
-  if (firstName.value.length > 2) {
+  if (firstName.value.length > 1) {
      setting.firstName.data = firstName.value;
      setting.firstName.status = true;
      firstName.parentNode.setAttribute("data-error-visible", "false");
@@ -109,7 +109,7 @@ firstName.addEventListener('input', checkInputFirstName);
 
 // Check last name
 const checkInputLastName = () => {
-  if (lastName.value.length > 2) {
+  if (lastName.value.length > 1) {
      setting.lastName.data = lastName.value;
      setting.lastName.status = true;
      lastName.parentNode.setAttribute("data-error-visible", "false");
@@ -150,7 +150,7 @@ date.addEventListener('input', checkInputDate);
 
 // Check constest enrollment
 const checkInputContest = () => {
-   if (contest.value == '' || contest.value <= 0 || contest.value > 99) {
+   if (contest.value == '' || contest.value < 0 || contest.value > 99) {
       setting.contest.data = contest.value;
       setting.contest.status = false;
       contest.parentNode.setAttribute("data-error-visible", "true");
